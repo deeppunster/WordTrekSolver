@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Animal/Daily Quest Entry</title>
+</head>
+<body>
+    {% extends "wordtrek/base.html" %}
+
+    {% block title %}
+        {{ title }} | {{ site_title|default:_('Animal/Daily Quest Entry') }}
+    {% endblock %}
+
+    {% block branding %}
+        <h1 id="site-name"><a href="{% url 'wordtrek:index' %}"
+        >Polls Administration</a></h1>
+    {% endblock %}
+
+    {% block nav-global %}{% endblock %}
+</body>
+</html>

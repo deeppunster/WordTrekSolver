@@ -1,0 +1,292 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Creation and Modification Log &#8212; WordTrek Solver using Django 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="WordTrekDjango" href="modules.html" />
+    <link rel="prev" title="Welcome to WordTrek Solver using Django’s documentation!" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="creation-and-modification-log">
+<h1>Creation and Modification Log<a class="headerlink" href="#creation-and-modification-log" title="Permalink to this headline">¶</a></h1>
+<p>This is a log of what I did and in what order to put this project together.</p>
+<div class="section" id="initial-setup">
+<h2>Initial Setup<a class="headerlink" href="#initial-setup" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="project-requirements">
+<h3>Project Requirements<a class="headerlink" href="#project-requirements" title="Permalink to this headline">¶</a></h3>
+<p>Initial requirements are:</p>
+<ol class="arabic simple">
+<li>PyCharm Professional (2016.3)</li>
+<li>Python 3.5</li>
+<li>Access to the internet</li>
+</ol>
+</div>
+<div class="section" id="initial-steps">
+<h3>Initial Steps<a class="headerlink" href="#initial-steps" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Create a new Django project named &#8220;WorkTrekDjango.<ul>
+<li>Start by using the main Python 3.5 intrepreter for the project.</li>
+</ul>
+</li>
+<li>Add some directories to it manually.<ol class="loweralpha">
+<li>behave</li>
+<li>docs</li>
+<li>tests</li>
+<li>venv</li>
+<li>wordtrek</li>
+<li>wordtrek/migrations</li>
+<li>work</li>
+</ol>
+</li>
+<li>Create the virtual environment for this project in venv.<ul>
+<li>Based on Python 3.5</li>
+<li>Added these packages to it:<ol class="arabic">
+<li>Django</li>
+<li>pytest-django</li>
+<li>Sphinx</li>
+<li>django-sphinx</li>
+<li>django-sphinx-autodoc</li>
+<li>behave-django</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>Run the sphinx-quickstart tool.</li>
+<li>Started this log.</li>
+<li>Added this log and modules to the index.rst.</li>
+<li>Verify that the WordTrekDjango task works.</li>
+<li>Create a sphinx task and verify that it works.</li>
+<li>Run the tool &#8220;Run manage.py Task...&#8221;.<ul>
+<li>startapp wordtrek</li>
+<li>This will create the starter files for the Django app itself.</li>
+</ul>
+</li>
+<li>Add a few more directories that will be needed later.<ol class="arabic">
+<li>wordtrek/static</li>
+<li>wordtrek/static/wordtrek</li>
+<li>wordtrek/templates</li>
+<li>wordtrek/templates/admin</li>
+<li>wordtrek/templates/wordtrek</li>
+</ol>
+</li>
+<li>Setup BDD (behave) as desired.</li>
+<li>Setup TDD(pytest) as desired.</li>
+</ol>
+</div>
+</div>
+<div class="section" id="setup-the-database-tables-and-fields">
+<h2>Setup the database tables and fields<a class="headerlink" href="#setup-the-database-tables-and-fields" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<p>Remove the following sample rst stuff when done.</p>
+<div class="section" id="sub-section">
+<h3>Sub-Section<a class="headerlink" href="#sub-section" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="sub-sub-section">
+<h4>Sub-Sub-Section<a class="headerlink" href="#sub-sub-section" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="paragraph">
+<h5>Paragraph<a class="headerlink" href="#paragraph" title="Permalink to this headline">¶</a></h5>
+<p>Official list of Python heading levels</p>
+<blockquote>
+<div><ul class="simple">
+<li># with overline, for parts</li>
+<li>* with overline, for chapters</li>
+<li>= for sections</li>
+<li>- for subsections</li>
+<li>^ for subsubsections</li>
+<li>&#8221; for paragraphs</li>
+</ul>
+</div></blockquote>
+<p>Blah blah <em>italics</em>  <strong>bold</strong></p>
+<p>This is a numbered list</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Numbered items</li>
+<li>Numbered items</li>
+<li>Period can be replaced by a dash, right paren, etc., but is required.</li>
+</ol>
+</div></blockquote>
+<dl class="docutils">
+<dt>This is a bulleted list</dt>
+<dd><ul class="first last simple">
+<li>Bulleted items</li>
+<li>Bulleted items</li>
+</ul>
+</dd>
+</dl>
+<p>A simple sample Table</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="67%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Cell Title</th>
+<th class="head">Another Cell  Title</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>contents</td>
+<td>more contents</td>
+</tr>
+<tr class="row-odd"><td>item 1</td>
+<td>item 2</td>
+</tr>
+<tr class="row-even"><td>green</td>
+<td>purple</td>
+</tr>
+</tbody>
+</table>
+<p>A grid table</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="35%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Header Col 1
+Extended</th>
+<th class="head">Header 2</th>
+<th class="head">Centered
+Header</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Body 1</td>
+<td>Body 2</td>
+<td>Body 3</td>
+</tr>
+<tr class="row-odd"><td>Left Just</td>
+<td>Centered</td>
+<td>Right Just</td>
+</tr>
+<tr class="row-even"><td colspan="2">This entry spans these cols</td>
+<td rowspan="2"><p class="first">This entry</p>
+<p class="last">spans rows</p>
+</td>
+</tr>
+<tr class="row-odd"><td>Blah</td>
+<td>Blah</td>
+</tr>
+</tbody>
+</table>
+<p>Link to external URL: <a class="reference external" href="http://www.apple.com">Apple main web site</a> that way.</p>
+<p>Reference to an internal documentation:  <a class="reference internal" href="#link-to-elsewhere">Link to elsewhere</a></p>
+<p>Blah blah</p>
+<blockquote>
+<div><span class="target" id="link-to-elsewhere">Link to elsewhere</span>   This is the target of the link above.</div></blockquote>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Creation and Modification Log</a><ul>
+<li><a class="reference internal" href="#initial-setup">Initial Setup</a><ul>
+<li><a class="reference internal" href="#project-requirements">Project Requirements</a></li>
+<li><a class="reference internal" href="#initial-steps">Initial Steps</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#setup-the-database-tables-and-fields">Setup the database tables and fields</a><ul>
+<li><a class="reference internal" href="#sub-section">Sub-Section</a><ul>
+<li><a class="reference internal" href="#sub-sub-section">Sub-Sub-Section</a><ul>
+<li><a class="reference internal" href="#paragraph">Paragraph</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Welcome to WordTrek Solver using Django&#8217;s documentation!</a></li>
+      <li>Next: <a href="modules.html" title="next chapter">WordTrekDjango</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/log.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Travis Risner.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="_sources/log.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

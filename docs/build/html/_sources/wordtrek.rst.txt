@@ -1,0 +1,26 @@
+wordtrek package
+================
+
+.. automodule:: wordtrek
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Subpackages
+-----------
+
+.. toctree::
+
+    wordtrek.migrations
+
+Submodules
+----------
+
+.. toctree::
+
+   wordtrek.admin
+   wordtrek.apps
+   wordtrek.models
+   wordtrek.tests
+   wordtrek.views
+
