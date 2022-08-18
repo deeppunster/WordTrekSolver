@@ -1,8 +1,7 @@
-WordTrekDjango
+WordTrekSolver
 ==============
 
 .. toctree::
    :maxdepth: 4
 
-   WordTrekDjango
-   wordtrek
+   WordTrekSolver
