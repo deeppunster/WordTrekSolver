@@ -1,5 +1,5 @@
-wordtrek.tests module
-=====================
+wordtrek\.tests module
+======================
 
 .. automodule:: wordtrek.tests
     :members:

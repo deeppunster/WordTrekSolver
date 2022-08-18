@@ -1,0 +1,95 @@
+{% extends 'wordtrek/base.html' %}
+
+{% block title %}
+    Add or Edit Puzzles
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h1 class="h1">
+                Add or Edit Puzzles for {{ animal }}
+            </h1>
+        </div>
+    </div>
+
+    <form action="{% url 'wordtrek:puzzle_edit' pk=animal.id %}"
+          method="POST">
+        {% csrf_token %}
+
+        {{ form.management_form }}
+
+        {# Non-field error messages appear here #}
+        {% if form.non_field_errors %}
+            <div class="row">
+                <ul class="col-md-6">
+                    {% for error in form.non_field_errors %}
+                        <li class="lead alert-danger bg-danger">
+                            <strong>{{ error }}</strong>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+        {# form body appears here #}
+        <div class="table">
+            <div class="form-group">
+                {% for field in form %}
+                    <div id="{{ field.auto_id }}_container">
+                        <div class="alert-info">
+                            {{ field.label_tag }}
+                        </div>
+                        <div>
+                            {{ field.help_text|safe }}
+                        </div>
+                        <div class="form-control">
+                            {{ field }}
+                        </div>
+                        <div id="{{ field.auto_id }}_errors"
+                             class="alert-warning">
+                            {{ field.errors }}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <button id="save_puzzle"
+                        type="submit"
+                        class="btn btn-default alert-success">
+                    Save
+                </button>
+            </div>
+        </div>
+
+    </form>
+
+    <div class="row">
+        <div class="col-md-12 text-center">
+           <a class="btn alert-info"
+              role="button"
+              href="{% url 'wordtrek:animal_detail' pk=animal.id %}">
+                back to animal or daily quest detail
+           </a>
+       </div>
+    </div>
+
+    <hr class="style-one">
+
+    <h6>
+        Template: puzzle_edit.html
+    </h6>
+    <h6>
+        View: AnimalPuzzleEditView
+    </h6>
+    <h6>
+         Save URL: {% url 'wordtrek:puzzle_edit' pk=1 %}
+    </h6>
+    <h6>
+        Return URL: {% url 'wordtrek:animal_detail' pk=1 %}
+    </h6>
+
+{% endblock %}

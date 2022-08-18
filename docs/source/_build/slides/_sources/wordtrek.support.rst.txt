@@ -1,0 +1,20 @@
+wordtrek.support package
+========================
+
+.. automodule:: wordtrek.support
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Submodules
+----------
+
+.. toctree::
+
+   wordtrek.support.ExtractWords
+   wordtrek.support.GetAWord
+   wordtrek.support.LookupWords
+   wordtrek.support.Puzzlebox
+   wordtrek.support.SpellChecker
+   wordtrek.support.constants
+

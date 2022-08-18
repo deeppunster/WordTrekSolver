@@ -1,0 +1,206 @@
+{% extends 'wordtrek/base.html' %}
+
+{# Purpose - Show answers for a puzzle. #}
+{# URL Name - puzzle_detail #}
+{# URL Response - GET #}
+{# Table - Answer (+ Puzzle, Animal) #}
+{# Form - PuzzleAnswerFormSet #}
+
+{% block title %}Puzzle Detail{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-8 text-center">
+            <h1 class="h1">
+                {{ this_animal }},
+                Puzzle Number {{ this_puzzle.puzzle_sequence }} <br/>
+                ({{ this_puzzle.puzzle_characters|upper }})
+           </h1>
+        </div>
+    </div>
+
+{#    <div class="row">#}
+{#        <div class="col-md-8 text-center">#}
+{#            <h4 class="h4">#}
+{#                for#}
+{#            </h4>#}
+{#        </div>#}
+{#    </div>#}
+
+{#    <div class="row">#}
+{#        <div class="col-md-8 text-center">#}
+{#            <h3 class="h3">#}
+{#                #}
+{#            </h3>#}
+{#        </div>#}
+{#    </div>#}
+
+    {#    below simulates a table using the bootstrap grid system# #}
+    {% if answer_set %}
+        <div class="row">
+            <div class="col-md-8 text-center">
+                <h3 class="h3">Answer List</h3>
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col-md-1 col-md-offset-1"><strong>Word #</strong></div>
+            <div class="col-md-1"><strong>Length</strong></div>
+            <div class="col-md-1"><strong>Status</strong></div>
+            <div class="col-md-1"><strong>Answer</strong></div>
+        </div>
+        {% for answer in answer_set %}
+            <div class="row text-center">
+                <div class="col-md-1 col-md-offset-1">
+                    <a class="btn alert-info"
+                        href="{% url 'wordtrek:letter_edit' pk=answer.id %}">
+                            {{ answer.answer_sequence }}
+                    </a>
+                </div>
+                <div class="col-md-1">
+                    {{ answer.answer_length }}
+                </div>
+                <div class="col-md-1">
+                    {{ answer.get_answer_status_display }}
+                </div>
+
+                {# display answer since it is filled, hinted, or empty #}
+                <div class="col-md-1 text-left">
+                    {{ answer.answer_text }}
+                </div>
+
+                {# present button to solve word for unsolved or hinted words #}
+                {% if answer.answer_status != answer.SOLVED %}
+                    <div class="col-md-2">&nbsp;</div>
+                        <div class="col-md-1 text-center">
+                            <a class="btn alert-info"
+                               role="button"
+                               href="
+                                    {% url 'wordtrek:word_solve' pk=answer.id %}">
+                                Solve this word
+                            </a>
+                        </div>
+
+                {% endif %}
+
+            </div>
+        {% endfor %}
+
+        <div class="row">
+            <div class="text-center">
+               <div class="col-md-2 text-center">
+                   <a class="btn alert-info"
+                      role="button"
+                      href="{% url 'wordtrek:puzzle_reset' pk=this_puzzle.id %}">
+                        Reset Puzzle
+                   </a>
+               </div>
+            </div>
+
+            <div class="text-center">
+               <div class="col-md-2 text-center">
+                   <a class="btn alert-info"
+                      role="button"
+                      href="{% url 'wordtrek:dictionary_reset' pk=this_puzzle.id %}">
+                        Flip Dictionary Check
+                   </a>
+               </div>
+            </div>
+
+            <div class="text-center">
+               <div class="col-md-4 text-center">
+                   <a class="btn alert-info"
+                      role="button"
+                      href="{% url 'wordtrek:answer_edit' pk=this_puzzle.id %}">
+                        Add or edit Answers
+                   </a>
+               </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 text-center">
+                Current Working Table
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 text-center">
+                <table class="table">
+                    <tr>
+                        {% for element in letter_location_table %}
+                            {% if element == '|' %}
+                                </tr><tr>
+                            {% else %}
+                                <td>
+                                    {{ element }}
+                                </td>
+                            {% endif %}
+                        {% endfor %}
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+
+        <div class="row text-center">
+           <div class="col-md-8 text-center">
+               <a class="btn btn-default alert-info"
+                  role="button"
+                  href="{% url 'wordtrek:animal_detail' pk=this_animal.id %}">
+                    Back to puzzle list
+               </a>
+           </div>
+        </div>
+    {% else %}
+        <div class="row">
+            <div class="col-md-5 col-lg-offset-2 text-center">
+                <h3 class="h3">
+                    No answers defined for this puzzle yet.
+                </h3>
+            </div>
+        </div>
+        <div class="row text-center">
+           <div class="col-md-5 col-lg-offset-2 text-center">
+               <a class="btn alert-info"
+                  role="button"
+                  href="{% url 'wordtrek:answer_edit' pk=this_puzzle.id %}">
+                    Add or edit Answers
+               </a>
+           </div>
+        </div>
+        <div class="row text-center">
+           <div class="col-md-5 col-lg-offset-2 text-center">
+               <a class="btn btn-default alert-info"
+                  role="button"
+                  href="{% url 'wordtrek:animal_detail' pk=this_animal.id %}">
+                    Back to animal or daily quest detail
+               </a>
+           </div>
+        </div>
+    {% endif %}
+
+    <hr class="style-one">
+
+    <h6>
+        Template: puzzle_detail.html
+    </h6>
+    <h6>
+        View: PuzzleDetailView
+    </h6>
+    <h6>
+        Solve URL: {% url 'wordtrek:word_solve' pk=1 %}
+    </h6>
+    <h6>
+         Detail URL: {% url 'wordtrek:puzzle_detail' pk=1 %}
+    </h6>
+    <h6>
+        Add/Edit Letters URL: {% url 'wordtrek:letter_edit' pk=1 %}
+    </h6>
+    <h6>
+        Add/Edit Answers URL: {% url 'wordtrek:answer_edit' pk=1 %}
+    </h6>
+    <h6>
+        Return URL: {% url 'wordtrek:animal_detail' pk=1 %}
+    </h6>
+
+{% endblock %}

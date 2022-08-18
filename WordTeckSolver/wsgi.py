@@ -1,5 +1,5 @@
 """
-WSGI config for WordTrekDjango project.
+WSGI config for WordTrekSolver project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 

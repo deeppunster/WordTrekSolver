@@ -1,0 +1,31 @@
+{% extends 'wordtrek/base.html' %}
+
+{# Purpose - Rapidly find non-dictionary words in puzzle #}
+{# URL Name - word_search #}
+{# URL Response - POST #}
+{# Table - WordSearch #}
+{# Form - WordSearchForm #}
+
+{% block title %}Word Search{% endblock %}
+
+{% block content %}
+    {# page heading #}
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h1 class="h1">
+                {{ this_animal }} <br/>
+                Puzzle Number {{ this_puzzle.puzzle_sequence }} <br/>
+                {{ this_puzzle.puzzle_characters|upper }} <br/>
+                {{ this_answer.answer_sequence }}
+            </h1>
+        </div>
+    </div>
+
+    <div class="row">
+        {{ show_all }}
+        {{ trim_words }}
+        {{ action }}
+
+    </div>
+
+{%  endblock %}

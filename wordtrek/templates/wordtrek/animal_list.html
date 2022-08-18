@@ -1,0 +1,170 @@
+{% extends 'wordtrek/base.html' %}
+
+{# Purpose - List all animals and daily quests.  Serves as the main page. #}
+{# URL Name - animal_view #}
+{# URL Response - GET #}
+{# Table - Animal #}
+{# Form - none#}
+
+{% block title %}Animal and Daily Quest List{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div> {# class="col-md-12 text-center"> #}
+            <h1 class="h1">
+                Animal and Daily Quest List
+            </h1>
+        </div>
+
+    </div>
+        <div class="row">
+            <div class="col-md-2 text-center">
+               <a class="btn alert-info"
+                  role="button"
+                  href="{% url 'wordtrek:reset_option' 'puzzle'%}">
+                    Reset Puzzle
+               </a>
+           </div>
+
+        <div class="col-md-3 text-center">
+            <div class="text-left">
+                The vowel check is
+            </div>
+            {% if reset_options.vowels == True %}
+                <div class="text-left color: green">
+                    ON
+                </div>
+            {%  else %}
+               <div class="text-left color: red">
+                    OFF
+                </div>
+           {% endif %}
+           <a class="btn alert-info"
+              role="button"
+              href="{% url 'wordtrek:reset_option' 'vowel'%}">
+                Change Vowel Filter
+           </a>
+        </div>
+
+        <div class="col-md-3 text-center">
+            <div class="text-left">
+                The dictionary check is
+            </div>
+            {% if reset_options.dict == True %}
+                <div class="text-left color: green">
+                    ON
+                </div>
+            {%  else %}
+                <div class="text-left color: red">
+                    OFF
+                </div>
+            {% endif %}
+            <a class="btn alert-info"
+              role="button"
+              href="{% url 'wordtrek:reset_option' 'dict'%}">
+                Change Dictionary Filter
+            </a>
+        </div>
+
+        <div class="col-md-2 text-center">
+           <a class="btn alert-info"
+              role="button"
+              href="{% url 'wordtrek:reset_option' 'solved'%}">
+                Reset Solved Status
+           </a>
+       </div>
+
+    </div>
+
+    <hr class="style-one">
+
+    <div class="row">
+        &nbsp;
+    </div>
+
+    <div class="row">
+        <div class="col-md-11 text-center">
+           <a class="btn alert-info"
+              role="button"
+              href="{% url 'wordtrek:animal_new' %}">
+                Add Animal or Daily Quest
+           </a>
+       </div>
+    </div>
+
+    <div class="row">
+        &nbsp;
+    </div>
+
+    <div class="row text-left">
+        <div class="col-md-1"><strong>Category</strong></div>
+        <div class="col-md-1 text-right"><strong>Order</strong></div>
+        <div class="col-md-2"><strong>Animal&nbsp;Name</strong></div>
+        <div class="col-md-2"><strong>Date&nbsp;Started</strong></div>
+        <div class="col-md-1"><strong>Solved?</strong></div>
+        <div class="col-md-2 text-center">
+            <strong>Edit this animal or daily quest</strong>
+        </div>
+        <div class="col-md-2 text-center">
+            <strong>Delete this animal or daily quest</strong>
+        </div>
+    </div>
+    {% for critter in object_list %}
+        <div class="row text-left">
+            <div class="col-md-1">
+                {{ critter.get_category_display|safe }}
+            </div>
+            <div class="col-md-1 text-right">
+                {{ critter.animal_order }}
+            </div>
+            <div class="col-md-2">
+                <a class="btn alert-info"
+                   href="{% url 'wordtrek:animal_detail' pk=critter.id %}">
+                {{ critter.animal_name }}
+                </a>
+            </div>
+            <div class="col-md-2">
+                {{ critter.date_started }}
+            </div>
+            <div class="col-md-1">
+                {{ critter.get_animal_solved_display }}
+            </div>
+            <div class="col-md-2">
+                 <div class="text-center">
+                    <a class="btn alert-info"
+                       role="button"
+                       href="
+                            {% url 'wordtrek:animal_update' pk=critter.id %}">
+                        Edit
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-2">
+                 <div class="text-center">
+                    <a class="btn alert-info"
+                       role="button"
+                       href="
+                            {% url 'wordtrek:animal_delete' pk=critter.id %}">
+                        Delete
+                    </a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+    <hr class="style-one">
+
+    <h6>
+        Template: animal_list.html
+    </h6>
+    <h6>
+        View: AnimalDQListView
+    </h6>
+    <h6>
+         Detail URL: {% url 'wordtrek:animal_detail' pk=1 %}
+    </h6>
+    <h6>
+        Add URL: {% url 'wordtrek:animal_new' %}
+    </h6>
+
+{% endblock %}

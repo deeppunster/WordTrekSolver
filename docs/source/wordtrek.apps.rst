@@ -1,5 +1,5 @@
-wordtrek.apps module
-====================
+wordtrek\.apps module
+=====================
 
 .. automodule:: wordtrek.apps
     :members:

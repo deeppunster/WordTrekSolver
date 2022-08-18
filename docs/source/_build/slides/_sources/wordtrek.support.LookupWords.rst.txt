@@ -1,0 +1,7 @@
+wordtrek.support.LookupWords module
+===================================
+
+.. automodule:: wordtrek.support.LookupWords
+    :members:
+    :undoc-members:
+    :show-inheritance:

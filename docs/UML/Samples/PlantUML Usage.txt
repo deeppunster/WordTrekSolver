@@ -1,0 +1,17 @@
+Usage:
+- Open file, put the cursor inside of PlantUML code to render it
+- PlantUML code must be inside @startuml and @enduml tags to be rendered
+- A new file can be created from template (File | New | select e.g. 'UML Sequence' template)
+- PlantUML code can be placed anywhere, '*' are ignored for usage in Java comments
+- To render other than sequence diagram types, install Graphviz and set path to it
+- About screen tests Graphviz installation
+- Image cache size can be tuned in the settings, if you have not enough heap
+- You can use intention to reverse arrows (Alt+Enter)
+- Cursor on top of @startuml allows to use following intentions:
+  - disable syntax check
+  - enable partial rendering - renders each page on it's own, useful for big sequence diagram files
+- Performance tips:
+  - disable automatic rendering and use Update (Alt+D) or Reload (Alt+F) buttons
+  - do not put @newpage into included files (it prohibits incremental rendering)
+  - try to enable partial rendering
+  - disable syntax checking

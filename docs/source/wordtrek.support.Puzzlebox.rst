@@ -1,0 +1,7 @@
+wordtrek\.support\.Puzzlebox module
+===================================
+
+.. automodule:: wordtrek.support.Puzzlebox
+    :members:
+    :undoc-members:
+    :show-inheritance:

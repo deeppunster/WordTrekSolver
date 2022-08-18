@@ -1,5 +1,5 @@
-wordtrek.admin module
-=====================
+wordtrek\.admin module
+======================
 
 .. automodule:: wordtrek.admin
     :members:
