@@ -1,0 +1,17 @@
+WordTrekSolver package
+======================
+
+.. automodule:: WordTrekSolver
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Submodules
+----------
+
+.. toctree::
+
+   WordTrekSolver.settings
+   WordTrekSolver.urls
+   WordTrekSolver.wsgi
+

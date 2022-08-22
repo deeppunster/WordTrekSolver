@@ -1,0 +1,87 @@
+########
+Overview
+########
+
+************
+ChapterTopic
+************
+
+
+Section
+=======
+
+
+Sub-Section
+-----------
+
+
+Sub-Sub-Section
+^^^^^^^^^^^^^^^
+
+
+Paragraph
+"""""""""
+
+Official list of Python heading levels
+
+    - # with overline, for parts
+    - \* with overline, for chapters
+    - = for sections
+    - \- for subsections
+    - ^ for subsubsections
+    - " for paragraphs
+
+
+Blah blah *italics*  **bold**
+
+This is a numbered list
+
+    1. Numbered items
+    #. Numbered items
+    #. Period can be replaced by a dash, right paren, etc., but is required.
+
+This is a bulleted list
+    - Bulleted items
+    - Bulleted items
+    
+Show an indented literal text block like this:
+
+::
+
+    literal text
+    ...
+
+Text indented the same as the "::" marker ends the literal text
+
+A simple sample Table
+
+============   ========================
+Cell Title     Another Cell  Title
+============   ========================
+contents       more contents
+item 1         item 2
+green          purple
+============   ========================
+
+A grid table
+
++---------------+--------------+--------------+
+| Header Col 1  | Header 2     |   Centered   |
+| Extended      |              |   Header     |
++===============+==============+==============+
+| Body 1        |   Body 2     |       Body 3 |
++---------------+--------------+--------------+
+| Left Just     |   Centered   |   Right Just |
++---------------+--------------+--------------+
+| This entry spans these cols  | This entry   |
++---------------+--------------+              +
+| Blah          | Blah         | spans rows   |
++---------------+--------------+--------------+
+
+Link to external URL: `Apple main web site <http://www.apple.com>`_ that way.
+
+Reference to an internal documentation:  `Link to elsewhere`_
+
+Blah blah
+
+  _`Link to elsewhere`   This is the target of the link above.

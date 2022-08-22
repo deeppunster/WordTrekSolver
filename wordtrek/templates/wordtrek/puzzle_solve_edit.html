@@ -1,0 +1,194 @@
+{% extends 'wordtrek/base.html' %}
+
+{# Purpose - Propose words to solve a word in a puzzle. #}
+{# URL Name - puzzle_solve_edit #}
+{# URL Response - POST #}
+{# Table - Answer (+Animal, Puzzle) #}
+{# Form - WordSolveForm #}
+
+{% block title %}Solve A Word{% endblock %}
+
+{% block content %}
+
+{#  page heading #}
+    <div class="row">
+        <div class="col-md-5 text-center">
+            <h1 class="h1">
+                Puzzle Number {{ this_puzzle.puzzle_sequence }} <br/>
+                ({{ this_puzzle.puzzle_characters }})
+           </h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-5 text-center">
+            <h4 class="h4">
+                for
+            </h4>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-5 text-center">
+            <h3 class="h3">
+                {{ this_animal }}
+            </h3>
+        </div>
+    </div>
+
+{#  table-like form body #}
+    <form action="{% url 'wordtrek:word_solve' pk=this_answer.id %}"
+          class="form-group" method="POST">
+        {%  csrf_token %}
+
+        {# Non-field error messages appear here #}
+        {% if form.non_field_errors %}
+            <div class="row">
+                <ul class="col-md-5">
+                    {% for error in form.non_field_errors %}
+                        <li class="lead alert-danger bg-danger">
+                            <strong>{{ error }}</strong>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+        <div class="row">
+            <div class="form-group">
+{#                {% for field in form %}#}
+{#                    <div id="{{ field.auto_id }}_container">#}
+{#                        <div class="alert-info">#}
+{#                            {{ field.label_tag }}#}
+{#                        </div>#}
+{#                        <div>#}
+{#                            {{ field.help_text|safe }}#}
+{#                        </div>#}
+{#                        <div class="form-control">#}
+{#                            {{ field }}#}
+{#                        </div>#}
+{#                        <div id="{{ field.auto_id }}_errors"#}
+{#                             class="alert-warning">#}
+{#                            {{ field.errors }}#}
+{#                        </div>#}
+{#                    </div>#}
+{#                {% endfor %}#}
+                <div id="possible_answer_container">
+                    <div class="alert-info">
+                        Possible Answer
+                    </div>
+                    <div>Choose <strong>Use</strong> to accept this word or
+                        <strong>Next</strong> to try again
+                    </div>
+                    <div class="form-control">
+                        {{ possible_answer }}
+                    </div>
+                    <div id="possible_answer_errors"
+                         class="alert-warning">
+                        &nbsp
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-1">
+                        <table class="table">
+                            <tr>
+                                {% for element in letter_location_table %}
+                                    {% if element == '|' %}
+                                        </tr><tr>
+                                    {% else %}
+                                        <td>
+                                            {{ element }}
+                                        </td>
+                                    {% endif %}
+                                {% endfor %}
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="letter_locations_container">
+                    <div class="alert-info">
+                        (Locations:
+                    </div>
+                    <div class="form-control">
+                        {{ letter_locations }}
+                     </div>
+                    <div id="letter_locations_errors"
+                         class="alert-warning">
+                        &nbsp
+                    </div>
+              </div>
+
+            </div>
+        </div>
+
+        {# pass the possible word back and its letter locations if chosen #}
+        <input type="hidden"
+               name="possible_answer"
+               value="{{ possible_answer }}">
+
+        <input type="hidden"
+               name="letter_locations_string"
+               value="{{ letter_locations_string }}">
+
+        {# save button as default #}
+        <div class="row">
+
+            {% if not end_of_answers %}
+                <div class="col-md-2 text-center">
+                    <input id="save_answer"
+                            type="submit"
+                            value="Use"
+                            class="btn btn-default alert-success" />
+                </div>
+                <div class="col-md-2 text-center">
+                   <a class="btn btn-default alert-info"
+                      role="button"
+                      href="
+                        {% url 'wordtrek:word_solve_unique' pk=this_answer.id %}">
+                        Next new word
+                   </a>
+               </div>
+                <div class="col-md-2 text-center">
+                   <a class="btn btn-default alert-info"
+                      role="button"
+                      href="
+                        {% url 'wordtrek:word_solve_same' pk=this_answer.id %}">
+                        Same word again
+                   </a>
+               </div>
+            {% else %}
+                <div id="end_of_list" class="alert-danger">
+                    <strong>No more potential answers!</strong>
+                </div>
+            {% endif %}
+        </div>
+    </form>
+
+    <div class="row text-center">
+       <div class="col-md-3 text-center">
+           <a class="btn btn-default alert-info"
+              role="button"
+              href="{% url 'wordtrek:puzzle_detail' pk=this_puzzle.id %}">
+                Back to puzzle
+           </a>
+       </div>
+    </div>
+
+    <hr class="style-one">
+
+    <h6>
+        Template: puzzle_solve_edit.html
+    </h6>
+    <h6>
+        View: WordSolveView
+    </h6>
+    <h6>
+         Save URL: {% url 'wordtrek:word_solve' pk=1 %}
+    </h6>
+    <h6>
+        Return URL: {% url 'wordtrek:puzzle_detail' pk=1 %}
+    </h6>
+
+{% endblock %}

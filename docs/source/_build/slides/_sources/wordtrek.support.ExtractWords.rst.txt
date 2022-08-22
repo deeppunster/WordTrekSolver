@@ -1,0 +1,7 @@
+wordtrek.support.ExtractWords module
+====================================
+
+.. automodule:: wordtrek.support.ExtractWords
+    :members:
+    :undoc-members:
+    :show-inheritance:

@@ -1,0 +1,111 @@
+{% extends 'wordtrek/base.html' %}
+
+{# Purpose - Add or edit answers for a puzzle. #}
+{# URL Name - answer_edit #}
+{# URL Response - POST #}
+{# Table - Answer (+ Puzzle, Animal) #}
+{# Form - PuzzleAnswerFormSet #}
+
+{% block title %}
+    Add or Edit Answers
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h1 class="h1">
+                 &nbsp;
+                Add or Edit Answers for {{ this_animal }},
+                Puzzle # {{ puzzle.puzzle_sequence }}
+                ( {{ puzzle.puzzle_size }} X {{ puzzle.puzzle_size }} ) &nbsp;
+                {{ puzzle.puzzle_characters|upper }}
+            </h1>
+        </div>
+    </div>
+
+{#    <div class="row">#}
+{#        <div class="col-md-12 text-center">#}
+{#            <h3 class="h3">#}
+{#                Editing answers#}
+{#            </h3>#}
+{#        </div>#}
+{#    </div>#}
+
+{#    <div class="row text-center">#}
+{#        <div class="col-md-1"><strong>Sequence</strong></div>#}
+{#        <div class="col-md-1"><strong>Length</strong></div>#}
+{#        <div class="col-md-1"><strong>Status</strong></div>#}
+{#        <div class="col-md-1"><strong>Answer</strong></div>#}
+{#    </div>#}
+
+    <form action="{% url 'wordtrek:answer_edit' pk=this_puzzle.id %}"
+          method="POST" class="form-group">
+        {% csrf_token %}
+
+        <div class="row">
+            {{ form.management_form }}
+        </div>
+
+        {# Non-field error messages appear here #}
+        {% if form.non_field_errors %}
+            <div class="row">
+                <ul class="col-md-5">
+                    {% for error in form.non_field_errors %}
+                        <li class="lead alert-danger bg-danger">
+                            <strong>{{ error }}</strong>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+        <div class="row">
+            <div class="form-group">
+                {% for field in form %}
+                    <div id="{{ field.auto_id }}_container">
+                        <div class="form-control">
+                            {{ field }}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <button id="save_puzzle"
+                        type="submit"
+                        class="btn btn-default alert-success">
+                    Save
+                </button>
+            </div>
+        </div>
+
+    </form>
+
+    <div class="row">
+        <div class="col-md-12 text-center">
+           <a class="btn alert-info"
+              role="button"
+              href="{% url 'wordtrek:puzzle_detail' pk=puzzle.id %}">
+                Back to puzzle list
+           </a>
+       </div>
+    </div>
+
+    <hr class="style-one">
+
+    <h6>
+        Template: answer_edit.html
+    </h6>
+    <h6>
+        View: PuzzleAnswerEditView
+    </h6>
+    <h6>
+         Save URL: {% url 'wordtrek:answer_edit' pk=1 %}
+    </h6>
+    <h6>
+        Return URL: {% url 'wordtrek:puzzle_detail' pk=1 %}
+    </h6>
+
+{% endblock %}

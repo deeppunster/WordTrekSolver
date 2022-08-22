@@ -1,5 +1,5 @@
-wordtrek.models module
-======================
+wordtrek\.models module
+=======================
 
 .. automodule:: wordtrek.models
     :members:

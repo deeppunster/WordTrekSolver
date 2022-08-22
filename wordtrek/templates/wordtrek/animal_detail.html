@@ -1,0 +1,135 @@
+{% extends 'wordtrek/base.html' %}
+
+{# Purpose - List the details of an animal or daily quest. #}
+{#           Provides access to #}
+{# URL Name - animal_detail #}
+{# URL Response - GET #}
+{# Table - Animal, Puzzle #}
+{# Form - none#}
+
+{% block title %}Animal or Daily Quest Detail{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-5 text-center">
+            <h1 class="h1">
+                {% if animal.category == 'A' %}
+                    {{ animal.animal_name }} Detail
+                {% else %}
+                    Daily Quest for {{ animaidl.date_started }}
+                {% endif %}
+            </h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-5 text-center">
+            <h2 class="h2">
+                {{ animal }}
+            </h2>
+        </div>
+    </div>
+
+{#    below simulates a table using the bootstrap grid system# #}
+    {% if puzzle_set %}
+        <div class="row">
+            <div class="col-md-5 text-center">
+                <h2 class="h2">Puzzle List</h2>
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col-md-1"><strong>Puzzle #</strong></div>
+            <div class="col-md-1"><strong>Size</strong></div>
+            <div class="col-md-2"><strong>Solved?</strong></div>
+            <div class="col-md-3 text-left"><strong>Characters</strong></div>
+        </div>
+        {% for puzzle in puzzle_set %}
+            <div class="row text-center">
+                <div class="col-md-1">
+                    <a class="btn alert-info"
+                       href="{% url 'wordtrek:puzzle_detail' pk=puzzle.id %}">
+                        {{ puzzle.puzzle_sequence }}
+                    </a>
+                </div>
+                <div class="col-md-1 text-center">
+                    {{ puzzle.puzzle_size }}
+                </div>
+                <div class="col-md-2 text-center">
+                    {{ puzzle.get_puzzle_solved_display }}
+                </div>
+                <div class="col-md-3 text-left">
+                    {{ puzzle.puzzle_characters }}
+                </div>
+            </div>
+        {% endfor %}
+        <div class="row text-center">
+           <div class="col-md-5 text-center">
+               <a class="btn alert-info"
+                  role="button"
+                  href="{% url 'wordtrek:puzzle_edit' pk=animal.id %}">
+                    Add or edit Puzzles
+               </a>
+           </div>
+        </div>
+        <div class="row text-center">
+           <div class="col-md-5 text-center">
+               <a class="btn btn-default alert-info"
+                  role="button"
+                  href="{% url 'wordtrek:animal_view' %}">
+                    Back to animal and daily quest list
+               </a>
+           </div>
+        </div>
+    {% else %}
+        <div class="row">
+            <div class="col-md-3 text-center">
+                <h4 class="h4">
+                    No puzzles defined for this
+                    {% if animal.category == 'A' %}
+                        animal
+                    {% else %}
+                        daily quest
+                    {% endif %}
+                    yet.
+                </h4>
+            </div>
+        </div>
+        <div class="row text-center">
+           <div class="col-md-3 text-center">
+               <a class="btn alert-info"
+                  role="button"
+                  href="{% url 'wordtrek:puzzle_edit' pk=animal.id %}">
+                    Add or Edit Puzzles
+               </a>
+           </div>
+        </div>
+        <div class="row text-center">
+           <div class="col-md-3 text-center">
+               <a class="btn btn-default alert-info"
+                  role="button"
+                  href="{% url 'wordtrek:animal_view' %}">
+                    Back to Animal/Daily Quest List
+               </a>
+           </div>
+        </div>
+    {% endif %}
+
+    <hr class="style-one">
+
+    <h6>
+        Template: animal_detail.html
+    </h6>
+    <h6>
+        View: AnimalDQDetailView
+    </h6>
+    <h6>
+         Detail URL: {% url 'wordtrek:puzzle_detail' pk=1 %}
+    </h6>
+    <h6>
+        Add/Edit URL: {% url 'wordtrek:puzzle_edit' pk=1 %}
+    </h6>
+    <h6>
+        Return URL: {% url 'wordtrek:animal_view' %}
+    </h6>
+
+{% endblock %}

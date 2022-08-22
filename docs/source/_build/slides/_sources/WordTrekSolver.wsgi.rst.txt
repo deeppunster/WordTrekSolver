@@ -1,0 +1,7 @@
+WordTrekSolver.wsgi module
+==========================
+
+.. automodule:: WordTrekSolver.wsgi
+    :members:
+    :undoc-members:
+    :show-inheritance:
